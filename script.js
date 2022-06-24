@@ -75,7 +75,7 @@ btnRoll.addEventListener('click', function () {
       document.getElementById(
         `current--${activePlayer}`
       ).textContent = currentScore;
-      if(currentScore >= 10){
+      if(currentScore >= 50){
         endGame()
       }
     } else {
