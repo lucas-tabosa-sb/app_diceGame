@@ -1,5 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
+:root {
+	--primary-color: rgb(244, 124, 124);
+	--secondary-color: rgb(239, 159, 159);
+	--third-color: rgb(250,212, 212);
+	--fourth-color: rgb(255, 242, 242);
+	--text-color: #000;
+	--on-background: rgba(66, 66, 66, .15);
+	--box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.4);
+	--player-active: rgba(255, 255, 255, 0.4);
+	--current: rgba(238, 27, 27, 0.6);
+  }
+  
+  [data-theme="dark"] {
+	--primary-color: rgb(55, 27, 88);
+	--secondary-color: rgb(76, 53, 117);
+	--third-color: rgb(91,75,138);
+	--fourth-color: rgb(141, 110, 184);
+	--text-color: #fff;
+	--on-background: rgba(255, 255, 255, 0.11);
+	--player-active: rgba(255, 255, 255, 0.4);
+	--current: rgba(67, 6, 95, 0.6);
+
+  }
+
 * {
 	margin: 0;
 	padding: 0;
@@ -15,8 +39,8 @@ body {
 	font-family: "Nunito", sans-serif;
 	font-weight: 400;
 	height: 100vh;
-	color: #333;
-	background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+	color: var(--text-color);
+	background: linear-gradient(to top left, var(--primary-color) 10%, var(--secondary-color) 40%, var(--third-color) 60%, var(--fourth-color) 85%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -28,10 +52,9 @@ main {
 	position: relative;
 	width: 100rem;
 	height: 60rem;
-	background-color: rgba(255, 255, 255, 0.35);
 	backdrop-filter: blur(200px);
 	filter: blur();
-	box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
+	box-shadow: var(--box-shadow);
 	border-radius: 9px;
 	overflow: hidden;
 	display: flex;
@@ -61,12 +84,12 @@ main {
 .score {
 	font-size: 8rem;
 	font-weight: 300;
-	color: #c7365f;
+	color: var(--current);
 	margin-bottom: auto;
 }
 
 .player--active {
-	background-color: rgba(255, 255, 255, 0.4);
+	background-color: var(--player-active)
 }
 .player--active .name {
 	font-weight: 700;
@@ -80,10 +103,10 @@ main {
 }
 
 .current {
-	background-color: #c7365f;
+	background-color: var(--current);
 	opacity: 0.8;
 	border-radius: 9px;
-	color: #fff;
+	color: var(--text-color);
 	width: 65%;
 	padding: 2rem;
 	text-align: center;
@@ -94,7 +117,7 @@ main {
 	text-transform: uppercase;
 	margin-bottom: 1rem;
 	font-size: 1.7rem;
-	color: #ddd;
+	color: var(--text-color);
 }
 
 .current-score {
@@ -107,7 +130,7 @@ main {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	color: #444;
+	color: var(--text-color);
 	background: none;
 	border: none;
 	font-family: inherit;
@@ -117,13 +140,18 @@ main {
 	font-weight: 400;
 	transition: all 0.2s;
 
-	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.6);
+	background-color: var(--primary-color) !important;
 	backdrop-filter: blur(10px);
 
 	padding: 0.7rem 2.5rem;
 	border-radius: 50rem;
-	box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+	box-shadow: var(--box-shadow);
+
+	width: 18.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 5rem;
 }
 
 .btn::first-letter {
@@ -132,15 +160,18 @@ main {
 	margin-right: 0.7rem;
 }
 
-.btn--new {
-	background-color: #fff;
+.btn.btn--new {
+	background-color: var(--primary-color) !important;
+	color: var(--text-color) !important;
 	top: 4rem;
+	font-weight: bold;
 }
+
 .btn--roll {
-	top: 39.3rem;
+	top: 33.5rem;
 }
 .btn--hold {
-	top: 46.1rem;
+	top: 41rem;
 }
 
 .btn--set-points {
@@ -151,7 +182,7 @@ main {
 
 .btn:active {
 	transform: translate(-50%, 3px);
-	box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+	box-shadow: 0 1rem 2rem var(--box-shadow);
 }
 
 .btn:focus {
@@ -164,16 +195,17 @@ main {
 	top: 16.5rem;
 	transform: translateX(-50%);
 	height: 10rem;
-	box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+	box-shadow: var(--box-shadow);
 }
-
 .player--winner {
-	background-color: #2f2f2f;
+	/* background-color: var(--on-background); */
+	background-color: var(--fourth-color);
+	color: var(--text-color);
 }
 
 .player--winner .name {
 	font-weight: 700;
-	color: #c7365f;
+	color: var(--primary-color);
 }
 
 .hidden {
@@ -181,5 +213,85 @@ main {
 }
 
 .btn-disabled {
-	background-color: rgba(141, 141, 141, 0.555);
+	background-color: var(--on-background) !important;
+	box-shadow: none;
 }
+
+
+/* theme switcher */
+
+.theme-switch-wrapper {
+	display: flex;
+	align-items: center;
+	z-index: 100;
+	position: fixed;
+	right: 25px;
+	top: 30px;
+  }
+  
+  .theme-switch-wrapper span {
+	margin-right: 10px;
+	font-size: 1rem;
+  }
+  
+  .toggle-text {
+	font-size: 2rem !important;
+	position: relative;
+	top: -4px;
+	right: 5px;
+	color: var(--text-color);
+  }
+  
+  .theme-switch {
+	display: inline-block;
+	height: 34px;
+	position: relative;
+	width: 60px;
+  }
+  
+  .theme-switch input {
+	display: none;
+  }
+  
+  .slider {
+	background: #ccc;
+	bottom: 0;
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: 0.4s;
+  }
+  
+  .slider::before {
+	background: #fff;
+	bottom: 4px;
+	content: "";
+	height: 26px;
+	left: 4px;
+	position: absolute;
+	transition: 0.4s;
+	width: 26px;
+  }
+  
+  input:checked + .slider {
+	background: var(--primary-color);
+  }
+  
+  input:checked + .slider::before {
+	transform: translateX(26px);
+  }
+  
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round::before {
+	border-radius: 50%;
+  }
+  
+  .fas {
+	font-size: 30px;
+	margin-right: 5px;
+  }

@@ -1,127 +1,163 @@
-"use strict"
+'use strict';
 
-const diceEl = document.querySelector(".dice")
+// Selecting elements
+const player0El = document.querySelector('.player--0');
+const player1El = document.querySelector('.player--1');
+const score0El = document.querySelector('#score--0');
+const score1El = document.getElementById('score--1');
+const current0El = document.getElementById('current--0');
+const current1El = document.getElementById('current--1');
 
-// buttons
-const btnRoll = document.querySelector(".btn--roll")
-const btnNewGame = document.querySelector(".btn--new")
-const btnHold = document.querySelector(".btn--hold")
-const btnInputPoints = document.querySelector(".btn--set-points")
+const diceEl = document.querySelector('.dice');
+const btnNew = document.querySelector('.btn--new');
+const btnRoll = document.querySelector('.btn--roll');
+const btnHold = document.querySelector('.btn--hold');
+const btnSetScore = document.querySelector('.btn--set-points')
 
-//selecting score elements
-const score0El = document.getElementById("score--0")
-const score1El = document.getElementById("score--1")
+const toggleSwitch = document.querySelector('input[type="checkbox"]');
+const toggleIcon = document.getElementById('toggle-icon');
 
-//selecting players
-const player0El = document.querySelector(".player--0")
-const player1El = document.querySelector(".player--1")
+let scores, currentScore, activePlayer, playing;
 
-// player current score
-const currentScoreEl0 = document.getElementById("current--0")
-const currentScoreEl1 = document.getElementById("current--1")
-
-// player name:
-const playerName0El = document.getElementById("name--0")
-const playerName1El = document.getElementById("name--1")
-
-let scores, currentScore, activePlayer, playing, winningScore
-
-//starting conditions:
+// Starting conditions
 const init = function () {
-	diceEl.classList.add("hidden")
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
 
-	score0El.textContent = 0
-	score1El.textContent = 0
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
 
-	currentScoreEl0.textContent = 0
-	currentScoreEl1.textContent = 0
+  // diceEl.classList.add('hidden');
+  player0El.classList.remove('player--winner');
+  player0El.childNodes[1].innerText = "Player 1";
 
-	player0El.classList.remove("player--winner")
-	player0El.classList.add("player--active")
+  player1El.classList.remove('player--winner');
+  player1El.childNodes[1].innerText = "Player 2";
 
-	player1El.classList.remove("player--winner")
-	player1El.classList.remove("player--active")
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
 
-	playerName0El.textContent = "PLAYER 1"
-	playerName1El.textContent = "PLAYER 2"
+  btnHold.classList.remove('btn-disabled')
+  btnRoll.classList.remove('btn-disabled')
+  btnSetScore.classList.remove('btn-disabled')
 
-	scores = [0, 0]
-	winningScore = 50
-	btnInputPoints.placeholder = `ganha quem fizer ${winningScore} pontos primeiro`
-
-	currentScore = 0
-	activePlayer = 0
-	playing = true
-}
-
-init()
+  diceEl.classList.remove('hidden');
+  diceEl.src = `./assets/diceRoll.gif`;
+};
+init();
 
 const switchPlayer = function () {
-	currentScore = 0
-	document.getElementById(`current--${activePlayer}`).textContent = 0
-	activePlayer = activePlayer === 0 ? 1 : 0
-	player0El.classList.toggle("player--active")
-	player1El.classList.toggle("player--active")
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
+
+// Rolling dice functionality
+btnRoll.addEventListener('click', function () {
+  if (playing) {
+    // 1. Generating a random dice roll
+    const dice = Math.trunc(Math.random() * 6) + 1;
+
+    // 2. Display dice
+    diceEl.src = `./assets/dice-${dice}.png`;
+    diceEl.classList.add('dice-animated')
+
+    // 3. Check for rolled 1
+    if (dice !== 1) {
+      // Add dice to current score
+      currentScore += dice;
+      document.getElementById(
+        `current--${activePlayer}`
+      ).textContent = currentScore;
+      if(currentScore >= 10){
+        endGame()
+      }
+    } else {
+      // Switch to next player
+      switchPlayer();
+    diceEl.src = `./assets/diceRoll.gif`;
+
+    }
+  }
+});
+
+
+function endGame(){
+  if (playing) {
+    diceEl.src = `./assets/diceRoll.gif`;
+
+    // 1. Add current score to active player's score
+    scores[activePlayer] += currentScore;
+    // scores[1] = scores[1] + currentScore
+
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+
+    // 2. Check if player's score is >= 100
+    if (scores[activePlayer] >= 10) {
+      // Finish the game
+      playing = false;
+      diceEl.classList.add('hidden');
+
+      document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+      document.querySelector('.player--winner').childNodes[1].innerText = "Winner!";
+      document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+      btnHold.classList.add('btn-disabled')
+      btnRoll.classList.add('btn-disabled')
+      btnSetScore.classList.add('btn-disabled')
+
+    } else {
+      // Switch to the next player
+      switchPlayer();
+    }
+  }
 }
 
-btnRoll.addEventListener("click", function () {
-	if (playing) {
-		// generate a random dice roll:
-		const diceRoll = Math.trunc(Math.random() * 6) + 1
+btnHold.addEventListener('click', endGame);
 
-		// display the dice:
-		diceEl.classList.remove("hidden")
-		diceEl.src = `./assets/dice-${diceRoll}.png`
 
-		// check for rolled 1:
-		if (diceRoll !== 1) {
-			// add dice value to current score
-			currentScore += diceRoll
-			document.getElementById(`current--${activePlayer}`).textContent =
-				currentScore
-		} else {
-			switchPlayer()
-		}
+btnNew.addEventListener('click', init);
 
-		// check if rolled no = 1 ? switch player
-		console.log(diceRoll)
-	}
-})
+// THEME FUNCTIONS
 
-btnHold.addEventListener("click", function () {
-	if (playing) {
-		// add current score to active player's score:
-		scores[activePlayer] += currentScore
-		document.getElementById(`score--${activePlayer}`).textContent =
-			scores[activePlayer]
-		//check if score is >= 100 -> finish game
-		if (scores[activePlayer] >= winningScore) {
-			playing = false
+function darkMode() {
+  toggleIcon.children[0].textContent = 'Dark Mode';
+  toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+}
 
-			document
-				.querySelector(`.player--${activePlayer}`)
-				.classList.add("player--winner")
-			document
-				.querySelector(`.player--${activePlayer}`)
-				.classList.remove("player--active")
+// Light Mode Styles
+function lightMode() {
+  toggleIcon.children[0].textContent = 'Light Mode';
+  toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+}
 
-			document.getElementById(`name--${activePlayer}`).textContent = "Winner!"
+function switchTheme(event) {
+  if (event.target.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    darkMode();
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    lightMode();
+  }
+}
 
-			diceEl.classList.add("hidden")
-		} else {
-			switchPlayer()
-		}
-	}
-})
+// Event Listener
+toggleSwitch.addEventListener('change', switchTheme);
 
-btnNewGame.addEventListener("click", init)
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme) {
+  document.documentElement.setAttribute('data-theme', currentTheme);
 
-// //TODO
-// // IMPLEMENT A FEATURE TO ADJUST THE WINNING SCORE BY THE USER
-// btnInputPoints.addEventListener("click", function () {
-// 	btnInputPoints.placeholder = ""
-// 	btnInputPoints.style.textAlign = "center"
-
-// 	// console.log(btnInputPoints)
-// 	console.log(typeof btnInputPoints.value)
-// })
+  if (currentTheme === 'dark') {
+    toggleSwitch.checked = true;
+    darkMode();
+  }
+}
