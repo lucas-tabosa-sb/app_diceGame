@@ -295,3 +295,8 @@ main {
 	font-size: 30px;
 	margin-right: 5px;
   }
+
+
+  .burger-menu {
+	display: none;
+  }

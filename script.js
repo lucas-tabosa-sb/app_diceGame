@@ -14,7 +14,7 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const btnSetScore = document.querySelector('.btn--set-points')
 
-const toggleSwitch = document.querySelector('input[type="checkbox"]');
+const toggleSwitch = document.getElementById('theme-switcher');
 const toggleIcon = document.getElementById('toggle-icon');
 
 let scores, currentScore, activePlayer, playing;
