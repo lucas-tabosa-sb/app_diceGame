@@ -22,7 +22,7 @@ let enUsRules = `- Set the max score in the button below
 - the rolled number will be added to your CURRENT score
 - if you roll a 1, the CURRENT will go back to 0 and the turn will change to the opponent's side
 - You can stop and change to the opponent's turn by pressing "Hold" and your CURRENT will be added to the TOTAL score
-- Wins the one who reaches the Max score first<br>`
+- Wins the one who reaches the Max score first`
 
 let ptBRTitle = `COMO JOGAR: `
 let ptSetMax = `📥 Defina Max Score`
