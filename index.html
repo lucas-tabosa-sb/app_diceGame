@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
   <meta charset="UTF-8" />
@@ -9,15 +9,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/mobile.css" />
-  <title>DiceGame</title>
 </head>
 
 <body>
   <!-- theme switcher -->
   <section class="top-nav">
-    <!-- <div>
-      Logo Here
-    </div> -->
     <input id="menu-toggle" type="checkbox" />
     <label class='menu-button-container' for="menu-toggle">
     <div class='menu-button'></div>
@@ -26,25 +22,23 @@
       <li class="instructions">
         <div class="instructions holder">
           <div class="instructions instructions-title">
-            <h3>HOW TO PLAY:</h3>
+            <div class="translation-toggle">
+              <p id="ptbr">pt-BR</p>
+              <p>/</p>
+              <p id="enus">en-US</p>
+            </div>
+            <h3 id="rules-title"></h3>
           </div>
           <div class="instructions rules">
-            <p class="multiline">
-              - Set the max score in the button below <br>
-              - Start the game by Rolling the dice to get a random number <br>
-              - the rolled number will be added to your CURRENT score <br>
-              - if you roll a 1, the CURRENT will go back to 0 and the turn will change to the opponent's side<br>
-              - You can stop and change to the opponent's turn by pressing "Hold" and your CURRENT will be added to the TOTAL score<br>
-              - Wins the one who reaches the Max score first<br>
-            </p>
+            <p class="multiline" id="rules"></p>
           </div>
         </div>
       </li>
       <li class="cta-holder">
-        <p>CURRENT MAX SCORE: </p>
+        <p id="cta-holder-text"></p>
         <div class="max-score-btn">
           <input type="text" class="set-max-score" placeholder="Set Max Score" value="10">
-          <button class="btn--set-score-mobile">📥 Set Max Score</button>
+          <button class="btn--set-score-mobile"></button>
         </div>
       </li>
     </ul>
@@ -66,7 +60,7 @@
         <h2 class="name" id="name--0">Player 1</h2>
         <p class="score" id="score--0">43</p>
         <div class="current">
-          <p class="current-label">Current: </p>
+          <p class="current-label"></p>
           <p class="current-score" id="current--0">0</p>
         </div>
       </section>
@@ -74,15 +68,15 @@
         <h2 class="name" id="name--1">Player 2</h2>
         <p class="score" id="score--1">24</p>
         <div class="current">
-          <p class="current-label">Current: </p>
+          <p class="current-label current-label-1"></p>
           <p class="current-score" id="current--1">0</p>
         </div>
       </section>
 
       <img src="./assets/diceRoll.gif" alt="Playing dice" class="dice" />
-      <button class="btn btn--new btn--hidden-m">🔄 New game</button>
-      <button class="btn btn--roll">🎲 Roll</button>
-      <button class="btn btn--hold">📥 Hold</button>
+      <button class="btn btn--new btn--hidden-m"></button>
+      <button class="btn btn--roll"></button>
+      <button class="btn btn--hold"></button>
       <div class="btn btn--set-points">
         <input type="text" class="set-max-score" placeholder="Set Max Score" value="10">
         <button class="btn--set-score-mobile">📥 Set Max Score</button>
@@ -90,6 +84,7 @@
     </main>
   </div>
   <script src="script.js"></script>
+  <script src="./js/translation.js"></script>
 </body>
 
 </html>

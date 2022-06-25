@@ -335,4 +335,14 @@
         height: 16rem;
     }
 
+    .translation-toggle {
+        /* border: 1px solid white; */
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .translation-toggle p {
+        margin: 0 5px;
+    }
+
 }

@@ -142,7 +142,11 @@ function endGame() {
 	document
 		.querySelector(`.player--${activePlayer}`)
 		.classList.add("player--winner")
-	document.querySelector(".player--winner").childNodes[1].innerText = "Winner!"
+	if(document.getElementById("rules-title").textContent === 'HOW TO PLAY: '){
+		document.querySelector(".player--winner").childNodes[1].innerText = "Winner!"
+	} else {
+		document.querySelector(".player--winner").childNodes[1].innerText = "Ganhou!"
+	}
 	document
 		.querySelector(`.player--${activePlayer}`)
 		.classList.remove("player--active")
