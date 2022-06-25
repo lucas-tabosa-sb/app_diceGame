@@ -23,11 +23,29 @@
     <div class='menu-button'></div>
   </label>
     <ul class="menu">
-      <li>One</li>
-      <li>Two</li>
-      <li>Three</li>
-      <li>Four</li>
-      <li>Five</li>
+      <li class="instructions">
+        <div class="instructions holder">
+          <div class="instructions instructions-title">
+            <h3>HOW TO PLAY:</h3>
+          </div>
+          <div class="instructions rules">
+            <p class="multiline">
+              - Set the max score in the button below <br>
+              - Start the game by Rolling the dice to get a random number <br>
+              - the rolled number will be added to your CURRENT score <br>
+              - if you roll a 1, the CURRENT will go back to 0 and the turn will change to the opponent's side<br>
+              - You can stop and change to the opponent's turn by pressing "Hold" and your CURRENT will be added to the TOTAL score<br>
+              - Wins the one who reaches the Max score first<br>
+            </p>
+          </div>
+        </div>
+      </li>
+      <li class="cta-holder">
+        <div class="max-score-btn">
+          <input type="text" class="set-max-score" placeholder="Set Max Score" value="50">
+          <button class="btn--set-score-mobile">📥 Set Game Score</button>
+        </div>
+      </li>
     </ul>
   </section>
   <div class="container">

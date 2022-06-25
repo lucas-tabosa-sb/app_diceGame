@@ -13,11 +13,14 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const btnSetScore = document.querySelector('.btn--set-points')
+const btnSetScoreM = document.querySelector('.btn--set-score-mobile')
+const maxScoreInput = document.querySelector('.max-score-btn').childNodes
 
-const toggleSwitch = document.getElementById('theme-switcher');
+const toggleSwitch = document.getElementById('theme-switcher')
 const toggleIcon = document.getElementById('toggle-icon');
+const menuToggle = document.getElementById('menu-toggle')
 
-let scores, currentScore, activePlayer, playing;
+let scores, currentScore, activePlayer, playing, maxScore;
 
 // Starting conditions
 const init = function () {
@@ -25,6 +28,7 @@ const init = function () {
   currentScore = 0;
   activePlayer = 0;
   playing = true;
+  maxScore = maxScoreInput[1].value
 
   score0El.textContent = 0;
   score1El.textContent = 0;
@@ -75,7 +79,7 @@ btnRoll.addEventListener('click', function () {
       document.getElementById(
         `current--${activePlayer}`
       ).textContent = currentScore;
-      if(currentScore >= 50){
+      if(currentScore >= maxScore){
         endGame()
       }
     } else {
@@ -86,6 +90,16 @@ btnRoll.addEventListener('click', function () {
     }
   }
 });
+
+
+
+function setMaxScore(){
+  maxScore = maxScoreInput[1].value
+  console.log(maxScore)
+  console.log(typeof maxScore)
+  return maxScore
+  
+}
 
 
 function endGame(){
@@ -100,7 +114,7 @@ function endGame(){
       scores[activePlayer];
 
     // 2. Check if player's score is >= 100
-    if (scores[activePlayer] >= 50) {
+    if (scores[activePlayer] >= maxScore) {
       // Finish the game
       playing = false;
       diceEl.classList.add('hidden');
@@ -119,10 +133,16 @@ function endGame(){
   }
 }
 
+
+btnSetScoreM.addEventListener('click', setMaxScore)
+btnSetScoreM.addEventListener('click', init)
 btnHold.addEventListener('click', endGame);
-
-
 btnNew.addEventListener('click', init);
+
+
+
+
+
 
 // THEME FUNCTIONS
 
@@ -161,3 +181,4 @@ if (currentTheme) {
     darkMode();
   }
 }
+
