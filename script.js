@@ -46,8 +46,13 @@ const init = function () {
 	player1El.classList.remove("player--active")
 
 	btnHold.classList.remove("btn-disabled")
+	btnHold.classList.remove("btn--hidden-m")
+  
 	btnRoll.classList.remove("btn-disabled")
+	btnRoll.classList.remove("btn--hidden-m")
+
 	btnSetScore.classList.remove("btn-disabled")
+  btnNew.classList.add('btn--hidden-m')
 
 	diceEl.classList.remove("hidden")
 	diceEl.src = `./assets/diceRoll.gif`
@@ -142,7 +147,10 @@ function endGame() {
 		.querySelector(`.player--${activePlayer}`)
 		.classList.remove("player--active")
 	btnHold.classList.add("btn-disabled")
-	btnRoll.classList.add("btn-disabled")
+	btnRoll.classList.add("btn--hidden-m")
+	btnHold.classList.add("btn-disabled")
+	btnHold.classList.add("btn--hidden-m")
+  btnNew.classList.remove('btn--hidden-m')
 	btnSetScore.classList.add("btn-disabled")
 
 	scores[activePlayer] += currentScore

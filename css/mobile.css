@@ -1,7 +1,5 @@
 @media (max-width: 428px) {
     .toggle-text,
-
-    .btn--new,
     .btn--set-points {
         display: none;
     }
@@ -12,7 +10,7 @@
     }
 
     main {
-        top: 4.5rem;
+        top: 3.5rem;
         flex-direction: column;
         height: 80vh;
         width: 85vw;
@@ -110,6 +108,10 @@
         margin: 0 2rem;
     }
 
+    .btn--hidden-m {
+        display: none;
+    }
+
     .btn--roll {
         top: 103%;
         left: 25%;
@@ -122,7 +124,12 @@
         left: 75%;
         width: 45%;
         box-shadow: 1px 2px 10px 0 rgba(255, 255, 255, 0.2);
+    }
 
+    .btn--new {
+        top: 103% !important;
+        width: 100%;
+        box-shadow: 1px 2px 10px 0 rgba(255, 255, 255, 0.2);
     }
 
     .score {
