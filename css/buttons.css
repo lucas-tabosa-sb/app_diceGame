@@ -1,0 +1,87 @@
+.b-shape {
+    color: var(--text-color);
+	background: none;
+	border: none;
+	font-family: inherit;
+	font-size: 1.8rem;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-weight: 400;
+	transition: all 0.2s;
+
+	background-color: var(--primary-color) !important;
+	backdrop-filter: blur(10px);
+
+	padding: 0.7rem 2.5rem;
+	border-radius: 50rem;
+	box-shadow: var(--box-shadow);
+
+	width: 18.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 5rem;
+}
+
+.b-position {
+    position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.btn--new {
+	background-color: var(--primary-color);
+	color: var(--text-color);
+	top: 4rem;
+}
+
+.btn--roll {
+	top: 33.5rem;
+}
+.btn--hold {
+	top: 41rem;
+}
+
+.b-shape:active {
+	transform: translate(-50%, 3px);
+	box-shadow: 0 1rem 2rem var(--box-shadow);
+}
+
+.btn-disabled {
+	background-color: var(--on-background) !important;
+	box-shadow: none;
+}
+
+
+/* set max score in large screens */
+
+div.b-input-holder {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: .5rem;
+    top: 53rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.set-max-score-lg {
+    width: 25%;
+    border-radius: 50rem;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-right: 10px;
+}
+
+div.b-input-holder > button {
+    font-size: 1.5rem;
+    width: auto;
+}
+
+.b-shape.btn--set-score:active {
+	transform: translate(-1%, 1px);
+	box-shadow: 0 1rem 2rem var(--box-shadow);
+}

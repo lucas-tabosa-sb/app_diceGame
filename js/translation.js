@@ -2,13 +2,14 @@
 
 const rules = document.getElementById("rules")
 const rulesTitle = document.getElementById("rules-title")
-const maxScoreBtn = document.querySelector(".btn--set-score-mobile")
+const maxScoreBtn = document.querySelector(".btn--set-score")
+const maxScoreBtnM = document.querySelector(".btn--set-score-mobile")
 const ctaTextHolder = document.getElementById("cta-holder-text")
 const currentLabel = document.querySelector(".current-label")
 const currentLabel1 = document.querySelector(".current-label-1")
-const btnNewGame = document.querySelector(".btn.btn--new.btn--hidden-m")
-const btnRollDice = document.querySelector(".btn.btn--roll")
-const btnHoldDice = document.querySelector(".btn.btn--hold")
+const btnNewGame = document.querySelector(".btn--new.btn--hidden-m")
+const btnRollDice = document.querySelector(".btn--roll")
+const btnHoldDice = document.querySelector(".btn--hold")
 
 let enUSTitle = `HOW TO PLAY: `
 let enSetMax = `📥 Set Max Score`
@@ -41,6 +42,7 @@ let ptBrRules = `- Defina a pontuação máxima no botão abaixo
 rules.textContent = ptBrRules
 rulesTitle.textContent = ptBRTitle
 maxScoreBtn.textContent = ptSetMax
+maxScoreBtnM.textContent = ptSetMax
 ctaTextHolder.textContent = ptCTAText
 currentLabel.textContent = ptCurrentLabel
 currentLabel1.textContent = ptCurrentLabel
@@ -48,26 +50,37 @@ btnNewGame.textContent = ptBtnNEW
 btnRollDice.textContent = ptRollDice
 btnHoldDice.textContent = ptHoldDice
 
-document.getElementById("ptbr").addEventListener("click", function () {
+
+
+
+function translatePT(){
 	rules.textContent = ptBrRules
 	rulesTitle.textContent = ptBRTitle
 	maxScoreBtn.textContent = ptSetMax
+	maxScoreBtnM.textContent = ptSetMax
 	ctaTextHolder.textContent = ptCTAText
 	currentLabel.textContent = ptCurrentLabel
 	currentLabel1.textContent = ptCurrentLabel
 	btnNewGame.textContent = ptBtnNEW
 	btnRollDice.textContent = ptRollDice
 	btnHoldDice.textContent = ptHoldDice
-})
+}
 
-document.getElementById("enus").addEventListener("click", function () {
+function translateEN(){
 	rules.textContent = enUsRules
 	rulesTitle.textContent = enUSTitle
 	maxScoreBtn.textContent = enSetMax
+	maxScoreBtnM.textContent = enSetMax
 	ctaTextHolder.textContent = enCTAText
 	currentLabel.textContent = enCurrentLabel
 	currentLabel1.textContent = enCurrentLabel
 	btnNewGame.textContent = enBtnNEW
 	btnRollDice.textContent = enRollDice
 	btnHoldDice.textContent = enHoldDice
-})
+}
+
+document.getElementById("ptbr").addEventListener('click', translatePT)
+document.getElementById("ptbr-lg").addEventListener('click', translatePT)
+
+document.getElementById("enus").addEventListener('click', translateEN)
+document.getElementById("enus-lg").addEventListener('click', translateEN)
