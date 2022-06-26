@@ -1,4 +1,4 @@
-@media (max-width: 428px) {
+@media (max-width: 1000px) {
     .toggle-text,
     .btn--set-points {
         display: none;
@@ -19,8 +19,10 @@
     }
 
     .theme-switch-wrapper {
-        top: 10px;
-        right: 5px;
+        top: 0;
+        /* left: 0; */
+        right: -4rem;
+        width: 50%;
     }
 
     .theme-switch {
@@ -109,24 +111,24 @@
     }
 
     .btn--hidden-m {
-        display: none;
+        display: none !important;
     }
 
-    .btn--roll {
+    button.btn--roll {
         top: 103%;
         left: 25%;
         width: 45%;
         box-shadow: 1px 2px 10px 0 rgba(255, 255, 255, 0.2);
     }
 
-    .btn--hold {
+    button.btn--hold {
         top: 103%;
         left: 75%;
         width: 45%;
         box-shadow: 1px 2px 10px 0 rgba(255, 255, 255, 0.2);
     }
 
-    .btn--new {
+    button.btn--new {
         top: 103% !important;
         width: 100%;
         box-shadow: 1px 2px 10px 0 rgba(255, 255, 255, 0.2);
@@ -275,6 +277,10 @@
         align-items: center;
     }
 
+    .instructions p {
+        cursor: pointer;
+    }
+
     .instructions:last-child(){
         display: flex;
         justify-content: flex-end;
@@ -345,8 +351,8 @@
         margin: 0 5px;
     }
 
-    .btn.set-points-holder {
-        display: none;
+    div.b-input-holder {
+        display: none !important;
     }
 
 }

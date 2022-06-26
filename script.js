@@ -12,9 +12,10 @@ const diceEl = document.querySelector(".dice")
 const btnNew = document.querySelector(".btn--new")
 const btnRoll = document.querySelector(".btn--roll")
 const btnHold = document.querySelector(".btn--hold")
-const btnSetScore = document.querySelector(".btn--set-points")
+const btnSetScore = document.querySelector(".btn--set-score")
 const btnSetScoreM = document.querySelector(".btn--set-score-mobile")
-const maxScoreInput = document.querySelector(".max-score-btn").childNodes
+const maxScoreInput = document.querySelector(".set-max-score")
+const maxScoreInputLg = document.querySelector(".set-max-score-lg")
 
 const toggleSwitch = document.getElementById("theme-switcher")
 const toggleIcon = document.getElementById("toggle-icon")
@@ -28,35 +29,54 @@ const init = function () {
 	currentScore = 0
 	activePlayer = 0
 	playing = true
-	maxScore = maxScoreInput[1].value
 
 	score0El.textContent = 0
 	score1El.textContent = 0
 	current0El.textContent = 0
 	current1El.textContent = 0
 
-	// diceEl.classList.add('hidden');
+	// players
 	player0El.classList.remove("player--winner")
 	player0El.childNodes[1].innerText = "Player 1"
-
 	player1El.classList.remove("player--winner")
 	player1El.childNodes[1].innerText = "Player 2"
-
 	player0El.classList.add("player--active")
 	player1El.classList.remove("player--active")
 
-	btnHold.classList.remove("btn-disabled")
-	btnHold.classList.remove("btn--hidden-m")
-  
-	btnRoll.classList.remove("btn-disabled")
-	btnRoll.classList.remove("btn--hidden-m")
-
+	// CTAs
 	btnSetScore.classList.remove("btn-disabled")
-  btnNew.classList.add('btn--hidden-m')
+	btnSetScore.disabled = false
 
+
+
+	btnNew.classList.add("btn--hidden-m")
+
+	// dice
 	diceEl.classList.remove("hidden")
 	diceEl.src = `./assets/diceRoll.gif`
+
+	if(window.screen.width <= 1000 ){
+		return (
+		btnRoll.disabled == false,
+		btnRoll.classList.remove('btn-disabled'),
+		btnRoll.classList.remove('btn--hidden-m'),
+		
+		btnHold.disabled == false,
+		btnHold.classList.remove("btn--hidden-m"),
+		btnHold.classList.remove('btn-disabled')
+		)
+	} else {
+		return(
+		btnHold.disabled = true,
+		btnHold.classList.remove("btn--hidden-m"),
+		btnHold.classList.add('btn-disabled'),
+		btnRoll.disabled = true,
+		btnRoll.classList.remove("btn--hidden-m"),
+		btnRoll.classList.add('btn-disabled')
+		)
+	}
 }
+
 init()
 
 const switchPlayer = function () {
@@ -94,8 +114,21 @@ function play() {
 	}
 }
 
-function setMaxScore() {
-	maxScore = maxScoreInput[1].value
+function setMaxScore(e) {
+	if (e.target == btnSetScore) {
+		maxScore = maxScoreInputLg.value
+		btnHold.disabled = false
+		btnHold.classList.remove('btn-disabled')
+		btnRoll.disabled = false
+		btnRoll.classList.remove('btn-disabled')
+	} else if (e.target == btnSetScoreM) {
+		maxScore = maxScoreInput.value
+		btnHold.disabled = false
+		btnHold.classList.remove('btn-disabled')
+		btnRoll.disabled = false
+		btnRoll.classList.remove('btn-disabled')
+		console.log(maxScore)
+	}
 	document.getElementById("menu-toggle").checked = false
 	return maxScore
 }
@@ -142,29 +175,34 @@ function endGame() {
 	document
 		.querySelector(`.player--${activePlayer}`)
 		.classList.add("player--winner")
-	if(document.getElementById("rules-title").textContent === 'HOW TO PLAY: '){
-		document.querySelector(".player--winner").childNodes[1].innerText = "Winner!"
+	if (document.getElementById("rules-title").textContent === "HOW TO PLAY: ") {
+		document.querySelector(".player--winner").childNodes[1].innerText =
+			"Winner!"
 	} else {
-		document.querySelector(".player--winner").childNodes[1].innerText = "Ganhou!"
+		document.querySelector(".player--winner").childNodes[1].innerText =
+			"Ganhou!"
 	}
 	document
 		.querySelector(`.player--${activePlayer}`)
 		.classList.remove("player--active")
 	btnHold.classList.add("btn-disabled")
-	btnRoll.classList.add("btn--hidden-m")
-	btnHold.classList.add("btn-disabled")
 	btnHold.classList.add("btn--hidden-m")
-  btnNew.classList.remove('btn--hidden-m')
+	btnRoll.classList.add("btn-disabled")
+	btnRoll.classList.add("btn--hidden-m")
+	btnNew.classList.remove("btn--hidden-m")
 	btnSetScore.classList.add("btn-disabled")
+	btnSetScore.disabled = true
 
 	scores[activePlayer] += currentScore
 	document.getElementById(`score--${activePlayer}`).textContent =
 		scores[activePlayer]
 }
 
+
+//CTAs
 btnRoll.addEventListener("click", play)
 btnSetScoreM.addEventListener("click", setMaxScore)
-btnSetScoreM.addEventListener("click", init)
+btnSetScore.addEventListener("click", setMaxScore)
 btnHold.addEventListener("click", holdTurn)
 btnNew.addEventListener("click", init)
 
@@ -195,7 +233,6 @@ function switchTheme(event) {
 
 // Event Listener
 toggleSwitch.addEventListener("change", switchTheme)
-
 const currentTheme = localStorage.getItem("theme")
 if (currentTheme) {
 	document.documentElement.setAttribute("data-theme", currentTheme)

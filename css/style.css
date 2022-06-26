@@ -97,7 +97,6 @@ main {
 .player--active .score {
 	font-weight: 400;
 }
-
 .player--active .current {
 	opacity: 1;
 }
@@ -124,96 +123,6 @@ main {
 	font-size: 3.5rem;
 }
 
-/* absolute position elements */
-
-.btn {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	color: var(--text-color);
-	background: none;
-	border: none;
-	font-family: inherit;
-	font-size: 1.8rem;
-	text-transform: uppercase;
-	cursor: pointer;
-	font-weight: 400;
-	transition: all 0.2s;
-
-	background-color: var(--primary-color) !important;
-	backdrop-filter: blur(10px);
-
-	padding: 0.7rem 2.5rem;
-	border-radius: 50rem;
-	box-shadow: var(--box-shadow);
-
-	width: 18.5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 5rem;
-}
-
-.btn::first-letter {
-	font-size: 2.4rem;
-	display: inline-block;
-	margin-right: 0.7rem;
-}
-
-.btn.btn--new {
-	background-color: var(--primary-color) !important;
-	color: var(--text-color) !important;
-	top: 4rem;
-	font-weight: bold;
-}
-
-.btn--roll {
-	top: 33.5rem;
-}
-.btn--hold {
-	top: 41rem;
-}
-
-.btn.set-points-holder {
-	top: 53rem;
-	width: 30rem !important;
-	height: 5rem !important;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 5px;
-}
-
-.btn.set-points-holder input {
-	width: 95%;
-	height: 100%;
-	font-size: 3.5rem;
-	text-align: center;
-	border-radius: 22px;
-	border: none;
-	outline: none;
-	color: var(--text-color);
-}
-.btn.set-points-holder button {
-	background: var(--primary-color);
-	color: var(--text-color);
-	border-radius: 50rem;
-	box-shadow: var(--box-shadow);
-	border:  none;
-	outline: none;
-	height: 4rem;
-	width: 14rem !important;
-}
-
-.btn:active {
-	transform: translate(-50%, 3px);
-	box-shadow: 0 1rem 2rem var(--box-shadow);
-}
-
-.btn:focus {
-	outline: none;
-}
-
 .dice {
 	position: absolute;
 	left: 50%;
@@ -237,21 +146,37 @@ main {
 	display: none;
 }
 
-.btn-disabled {
-	background-color: var(--on-background) !important;
-	box-shadow: none;
-}
-
 
 /* theme switcher */
 
 .theme-switch-wrapper {
-	display: flex;
+	display: flex !important;
 	align-items: center;
+	justify-content: space-between;
 	z-index: 100;
 	position: fixed;
-	right: 25px;
+	right: 0;
 	top: 30px;
+	width: 100%;
+	padding: 1rem 0;
+	margin-right: 5rem;
+  }
+
+  .translation-toggle-lg{
+	margin: 0 0 0 8rem;
+	width: 10%;
+}
+
+.translation-toggle-lg p {
+	margin: 0 1rem;
+	cursor: pointer;
+}
+
+  .toggle-wrapper{
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
   }
 
   .theme-switch-wrapper span {
@@ -324,4 +249,11 @@ main {
 
   .top-nav {
 	display: none;
+  }
+
+  .translation-toggle-lg {
+	font-size: 2rem;
+	display: flex;
+	position: absolute;
+	float: ;
   }

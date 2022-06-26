@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US">
 
 <head>
@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/mobile.css" />
   <link rel="stylesheet" href="./css/buttons.css" />
+  <link rel="stylesheet" href="./css/mediaqueries.css" />
 </head>
 
 <body>
@@ -17,8 +18,8 @@
   <section class="top-nav">
     <input id="menu-toggle" type="checkbox" />
     <label class='menu-button-container' for="menu-toggle">
-    <div class='menu-button'></div>
-  </label>
+      <div class='menu-button'></div>
+    </label>
     <ul class="menu">
       <li class="instructions">
         <div class="instructions holder">
@@ -46,7 +47,15 @@
   </section>
   <div class="container">
     <div class="theme-switch-wrapper">
-      <span id="toggle-icon">
+
+      <div class="translation-toggle-lg btn--hidden-m">
+        <p id="ptbr-lg">pt-BR</p>
+        <p>/</p>
+        <p id="enus-lg">en-US</p>
+      </div>
+
+      <div class="toggle-wrapper">
+        <span id="toggle-icon">
         <span class="toggle-text">Light Mode</span>
         <i class="fas fa-sun"></i>
       </span>
@@ -54,6 +63,8 @@
         <input type="checkbox" id="theme-switcher">
         <div class="slider round"></div>
       </label>
+      </div>
+
     </div>
     <!-- end if switcher -->
     <main>
@@ -75,16 +86,12 @@
       </section>
 
       <img src="./assets/diceRoll.gif" alt="Playing dice" class="dice" />
-      <button class="btn btn--new btn--hidden-m"></button>
-      <button class="btn btn--roll"></button>
-      <button class="btn btn--hold"></button>
-      <div class="btn set-points-holder">
-        <div class="input-holder">
-          <input type="text" class="set-max-score" placeholder="Set Max Score" value="10">
-        </div>
-        <div class="button-holder">
-          <button class="btn--set-score-mobile">📥 Set Max Score</button>
-        </div>
+      <button class="b-shape b-position btn--new btn--hidden-m"></button>
+      <button class="b-shape b-position btn--roll btn-disabled" disabled></button>
+      <button class="b-shape b-position btn--hold btn-disabled" disabled></button>
+      <div class="b-input-holder">
+        <input type="text" class="set-max-score-lg" placeholder="Set Max Score" value="10">
+        <button class="b-shape btn--set-score"></button>
       </div>
     </main>
   </div>
