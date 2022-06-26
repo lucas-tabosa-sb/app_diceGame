@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./css/mobile.css" />
+  <link rel="stylesheet" href="./css/buttons.css" />
 </head>
 
 <body>
@@ -77,9 +78,13 @@
       <button class="btn btn--new btn--hidden-m"></button>
       <button class="btn btn--roll"></button>
       <button class="btn btn--hold"></button>
-      <div class="btn btn--set-points">
-        <input type="text" class="set-max-score" placeholder="Set Max Score" value="10">
-        <button class="btn--set-score-mobile">📥 Set Max Score</button>
+      <div class="btn set-points-holder">
+        <div class="input-holder">
+          <input type="text" class="set-max-score" placeholder="Set Max Score" value="10">
+        </div>
+        <div class="button-holder">
+          <button class="btn--set-score-mobile">📥 Set Max Score</button>
+        </div>
       </div>
     </main>
   </div>

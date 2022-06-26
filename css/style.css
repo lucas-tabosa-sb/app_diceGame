@@ -174,10 +174,35 @@ main {
 	top: 41rem;
 }
 
-.btn--set-points {
+.btn.set-points-holder {
 	top: 53rem;
 	width: 30rem !important;
-	height: auto;
+	height: 5rem !important;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px;
+}
+
+.btn.set-points-holder input {
+	width: 95%;
+	height: 100%;
+	font-size: 3.5rem;
+	text-align: center;
+	border-radius: 22px;
+	border: none;
+	outline: none;
+	color: var(--text-color);
+}
+.btn.set-points-holder button {
+	background: var(--primary-color);
+	color: var(--text-color);
+	border-radius: 50rem;
+	box-shadow: var(--box-shadow);
+	border:  none;
+	outline: none;
+	height: 4rem;
+	width: 14rem !important;
 }
 
 .btn:active {

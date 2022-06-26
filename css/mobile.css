@@ -345,4 +345,8 @@
         margin: 0 5px;
     }
 
+    .btn.set-points-holder {
+        display: none;
+    }
+
 }
